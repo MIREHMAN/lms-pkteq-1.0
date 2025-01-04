@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -72,16 +73,34 @@ export default function Dashboard() {
   ];
 
   const recentCourses = [
-    { id: 1, title: "Introduction to Web Development", progress: 75 },
-    { id: 2, title: "Data Science Fundamentals", progress: 40 },
-    { id: 3, title: "Mobile App Design", progress: 10 },
+    {
+      id: 1,
+      title: "Introduction to Web Development",
+      progress: 75,
+      image:
+        "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      id: 2,
+      title: "Data Science Fundamentals",
+      progress: 40,
+      image:
+        "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      id: 3,
+      title: "Mobile App Design",
+      progress: 10,
+      image:
+        "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
   ];
 
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Welcome to PAKTEQ Education LMS</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {stats.map((stat) => (
           <Card
             key={stat.id}
@@ -93,14 +112,14 @@ export default function Dashboard() {
             onMouseEnter={() => setHoveredCard(stat.id)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <CardHeader className={`bg-gradient-to-r ${stat.color}`}>
-              <CardTitle className="flex justify-between items-center text-white">
+            <CardHeader className={`bg-gradient-to-r ${stat.color} p-4`}>
+              <CardTitle className="flex justify-between items-center text-white text-lg">
                 {stat.title}
-                <stat.icon className="w-8 h-8" />
+                <stat.icon className="w-6 h-6" />
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-4">
-              <p className="text-4xl font-bold">
+            <CardContent className="p-4">
+              <p className="text-3xl font-bold">
                 {stat.id === 3 ? `${stat.value}%` : stat.value}
               </p>
               {stat.id === 3 && (
@@ -116,17 +135,22 @@ export default function Dashboard() {
           <CardTitle className="text-2xl">Recent Courses</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentCourses.map((course) => (
-              <div
-                key={course.id}
-                className="flex items-center justify-between bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-700 p-4 rounded-lg shadow-sm"
-              >
-                <div className="space-y-1 flex-1">
-                  <p className="font-medium text-lg">{course.title}</p>
+              <Card key={course.id} className="overflow-hidden">
+                <div className="relative h-40">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">{course.title}</h3>
                   <Progress
                     value={course.progress}
-                    className="w-full"
+                    className="mb-2"
                     indicatorColor={`bg-gradient-to-r ${
                       course.progress < 30
                         ? "from-red-500 to-yellow-500"
@@ -135,16 +159,18 @@ export default function Dashboard() {
                         : "from-green-500 to-blue-500"
                     }`}
                   />
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mx-4">
-                  {course.progress}% Complete
-                </p>
-                <Button variant="outline" size="sm" asChild className="ml-4">
-                  <Link href={`/courses/${course.id}/enrolled`}>
-                    Continue <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {course.progress}% Complete
+                    </span>
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href={`/courses/${course.id}/enrolled`}>
+                        Continue <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </CardContent>

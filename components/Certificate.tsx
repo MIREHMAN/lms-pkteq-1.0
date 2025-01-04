@@ -16,42 +16,42 @@ export function Certificate({
   certificateId,
 }: CertificateProps) {
   return (
-    <Card className="w-full max-w-3xl mx-auto relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1">
+    <Card className="w-full max-w-4xl mx-auto relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-1">
       <div className="absolute inset-0 z-0 bg-white dark:bg-gray-900">
         <Image
-          src="https://source.unsplash.com/random/1200x800?abstract,pattern"
+          src="https://images.pexels.com/photos/3243/pen-calendar-to-do-checklist.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Certificate Background"
           layout="fill"
           objectFit="cover"
           className="opacity-10"
         />
       </div>
-      <CardContent className="relative z-10 flex flex-col items-center text-center p-8 bg-white dark:bg-gray-900 rounded-lg">
+      <CardContent className="relative z-10 flex flex-col items-center text-center p-12 bg-white dark:bg-gray-900 rounded-lg">
         <div className="absolute top-4 left-4">
           <Badge variant="outline" className="text-sm">
             PAKTEQ Education
           </Badge>
         </div>
         <Image
-          src="/placeholder.svg?height=100&width=200"
+          src="https://images.pexels.com/photos/5428836/pexels-photo-5428836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="PAKTEQ Education Logo"
-          width={200}
-          height={100}
-          className="mb-6"
+          width={150}
+          height={150}
+          className="mb-8 rounded-full"
         />
-        <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+        <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
           Certificate of Completion
         </h1>
         <p className="text-xl mb-8 text-gray-600 dark:text-gray-300">
           This is to certify that
         </p>
-        <p className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-600">
+        <p className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
           {studentName}
         </p>
         <p className="text-xl mb-8 text-gray-600 dark:text-gray-300">
           has successfully completed the course
         </p>
-        <p className="text-2xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-yellow-600">
+        <p className="text-2xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-red-600">
           {courseName}
         </p>
         <p className="text-xl mb-4 text-gray-600 dark:text-gray-300">
@@ -59,22 +59,12 @@ export function Certificate({
         </p>
         <div className="flex justify-between w-full mt-12">
           <div className="text-left">
-            <Image
-              src="/placeholder.svg?height=50&width=150"
-              alt="Instructor Signature"
-              width={150}
-              height={50}
-            />
-            <p className="mt-2 text-gray-600 dark:text-gray-300">Instructor</p>
+            
+            <p className="text-gray-600 dark:text-gray-300">Instructor</p>
           </div>
           <div className="text-right">
-            <Image
-              src="/placeholder.svg?height=50&width=150"
-              alt="Director Signature"
-              width={150}
-              height={50}
-            />
-            <p className="mt-2 text-gray-600 dark:text-gray-300">Director</p>
+           
+            <p className="text-gray-600 dark:text-gray-300">Director</p>
           </div>
         </div>
         <p className="text-sm mt-8 text-gray-500 dark:text-gray-400">

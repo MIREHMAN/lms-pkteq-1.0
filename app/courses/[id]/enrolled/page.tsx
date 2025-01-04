@@ -17,7 +17,8 @@ const course = {
   instructor: "Jane Doe",
   totalLectures: 20,
   completedLectures: 8,
-  image: "https://source.unsplash.com/random/1200x800?coding",
+  image:
+    "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   lectures: [
     {
       id: 1,
@@ -105,8 +106,7 @@ export default function EnrolledCoursePage() {
   };
 
   const handleDownloadResources = () => {
-    // We're not using toast here anymore as we're downloading the resources
-  
+    // We're not using toast here anymore as we're downloading
   };
 
   return (
@@ -170,40 +170,50 @@ export default function EnrolledCoursePage() {
               <CardTitle>Course Lectures</CardTitle>
             </CardHeader>
             <CardContent>
-              {course.lectures.map((lecture) => (
-                <div
-                  key={lecture.id}
-                  className="flex justify-between items-center py-2 border-b last:border-b-0"
-                >
-                  <div className="flex items-center">
-                    {lecture.completed ? (
-                      <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
-                    ) : (
-                      <Play className="mr-2 h-4 w-4 text-blue-500" />
-                    )}
-                    <Link
-                      href={
-                        "http://localhost:3000/lectures/1"
-                      }
-                    >
-                      {lecture.title}
-                    </Link>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-gray-500" />
-                    <span className="text-sm text-gray-500">
-                      {lecture.duration}
-                    </span>
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link
-                        href={`/courses/${course.id}/lectures/${lecture.id}`}
-                      >
-                        {lecture.completed ? "Review" : "Start"}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {course.lectures.map((lecture) => (
+                  <Card key={lecture.id} className="overflow-hidden">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          {lecture.completed ? (
+                            <CheckCircle className="h-5 w-5 text-green-500" />
+                          ) : (
+                            <Play className="h-5 w-5 text-blue-500" />
+                          )}
+                          <h3 className="font-semibold">{lecture.title}</h3>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Clock className="h-4 w-4 text-gray-500" />
+                          <span className="text-sm text-gray-500">
+                            {lecture.duration}
+                          </span>
+                        </div>
+                      </div>
+                      <Progress
+                        value={lecture.progress}
+                        className="mt-2"
+                        indicatorColor={`bg-gradient-to-r ${
+                          lecture.progress < 30
+                            ? "from-red-500 to-yellow-500"
+                            : lecture.progress < 70
+                            ? "from-yellow-500 to-green-500"
+                            : "from-green-500 to-blue-500"
+                        }`}
+                      />
+                      <div className="flex justify-end mt-2">
+                        <Button  size="sm" asChild>
+                          <Link
+                            href={`/lectures/${lecture.id}`}
+                          >
+                            {lecture.completed ? "Review" : "Start"}
+                          </Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
