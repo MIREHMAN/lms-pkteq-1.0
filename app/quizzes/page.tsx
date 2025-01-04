@@ -96,7 +96,7 @@ export default function QuizzesPage() {
                         Score: {quiz.score}/{quiz.questions}
                       </p>
                       <Progress
-                        value={(quiz.score / quiz.questions) * 100}
+                        value={(quiz.score! / quiz.questions) * 100}
                         className="mb-2"
                       />
                       <Button variant="outline">Review Quiz</Button>
@@ -138,7 +138,7 @@ export default function QuizzesPage() {
                         {assignment.progress}% Complete
                       </p>
                       <Button className="w-full">
-                        {assignment.progress > 0 ? "Continue" : "Start"}{" "}
+                        {assignment.progress! > 0 ? "Continue" : "Start"}{" "}
                         Assignment
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
