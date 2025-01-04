@@ -23,8 +23,9 @@ const courses = [
   // ... other courses
 ];
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  const course = courses.find((c) => c.id === parseInt(params.id));
+export default async function CoursePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const course = courses.find((c) => c.id === parseInt(id));
 
   if (!course) {
     notFound();
